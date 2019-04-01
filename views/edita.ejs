@@ -1,0 +1,21 @@
+<%- layout('layout') %>
+<div>
+    <h3><%- title %></h3>
+    <hr />
+
+    <div class="row">
+    <form action="/forms/activities/edit" method="post" class="col-xs-6">
+        <% if (error != "") { %>
+            <div class="alert alert-danger" role="alert"><%= error %></div>
+        <% } %>
+        <input type="hidden" name="_id" value="<%= data._id %>" />
+        <div class="form-group">
+            <label for="Activity">Activity:</label>
+            <input name="Activity" value="<%= data.Activity %>" 
+            class="form-control"/>
+        </div>
+        <input type="submit" value="Update Activity" class="btn btn-success" />
+        <a href="/forms/activities" class="btn btn-success">Cancel</a>
+    </form>
+    </div>
+</div>

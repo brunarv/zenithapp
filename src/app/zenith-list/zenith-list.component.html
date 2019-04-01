@@ -1,0 +1,10 @@
+<h2>Events</h2>
+
+<table class="table">
+  <tbody *ngFor="let s of events">
+  <tr class="success">
+    <td colspan="2" *ngIf="s.etc" style="text-align: center;">{{s.From | date:'EEEE MMMM d, y'}}{{s.test}}</td>
+  </tr>
+  <tr><td>{{s.From | date:'jm'}} - {{s.To | date:'jm'}}</td><td>{{s.Activity}}</td></tr>
+  </tbody>
+</table>

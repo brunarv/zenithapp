@@ -1,0 +1,49 @@
+<%- layout('layout.ejs') %>
+<div>
+    <h3><%- title %></h3>
+
+    <hr />
+        <% if (success_msg != "") { %>
+        <div class="alert alert-success" role="alert">
+            <%= success_msg %><br />
+        </div>
+    <% } %>
+    
+    <p><a href="/forms/events/create" class="btn btn-success">Add a event</a></p>
+    <table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Event Date</th>
+            <th>Start Hour</th>
+            <th>End Hour</th>
+            <th>Active</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i < data.length; i++) { %>
+            <tr>
+            <% if(i > 0) { %>
+                <% if(data[i].EventDate.getDate() != data[i-1].EventDate.getDate()) { %>
+                <td colspan="5" class="success" style="text-align: center">Date: <%= data[i].EventDate.toUTCString() %></td>
+                <% } %>
+            <% }else { %>
+                <td colspan="5" class="success" style="text-align: center">Date: <%= data[i].EventDate %></td>
+            <% } %>
+            </tr>
+            <tr>
+                <td><%= data[i].Activity %></td>
+                <td><%= data[i].EventDate.toUTCString() %></td>
+                <td><%= data[i].StartHour %></td>
+                <td><%= data[i].EndHour %></td>
+                <td><%= data[i].isActive %></td>
+                <td>
+                    <a href="/forms/events/edit/<%= data[i]._id %>" class="btn btn-primary btn-small">Edit</a>
+                    <a href="/forms/events/delete/<%= data[i]._id %>" class="btn btn-primary btn-small">Delete</a>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>

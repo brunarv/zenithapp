@@ -1,0 +1,28 @@
+<%- layout('layout.ejs') %>
+<div>
+    <h3><%- title %></h3>
+    
+    <hr />
+        <% if (success_msg != "") { %>
+        <div class="alert alert-success" role="alert">
+            <%= success_msg %><br />
+        </div>
+    <% } %>
+
+    <p><a href="/forms/activities/create" class="btn btn-success">Add a activity</a></p>
+    <table class="table table-striped table-condensed">
+        <tr>
+            <th>Activity</th>
+            <th></th>
+        </tr>
+        <% for(var i=0; i<data.length; i++) { %>
+            <tr>
+                <td><%= data[i].Activity %></td>
+                <td>
+                    <a href="/forms/activities/edit/<%= data[i]._id %>" class="btn btn-primary btn-small">Edit</a>
+                    <a href="/forms/activities/delete/<%= data[i]._id %>" class="btn btn-primary btn-small">Delete</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+<%- layout('layout') %>
+<div>
+    <h3><%- title %></h3>
+    <hr />
+    
+    <div class="row">
+    <form action="/forms/events/edit" method="post" class="col-xs-6">
+        <% if (error != "") { %>
+            <div class="alert alert-danger" role="alert">
+                <% for (let i = 0; i < error.length; i++) { %>
+                    <%= error[i].msg %><br />
+                <% } %>
+            </div>
+        <% } %>
+
+        <input type="hidden" name="_id" value="<%= data._id %>" />
+        <div class="form-group">
+            <label for="Activity">Activity:</label>
+            <input name="Activity" value="<%= data.Activity %>" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="EventDate">Event Date</label>
+            <input name="EventDate" value="<%= data.EventDate %>" placeholder="yyyy-mm-dd" class="form-control" />
+            <label for="StartHour">Start Hour</label>
+            <input type="time" name="StartHour" value="<%= data.StartHour %>" placeholder="hh:mm" class="form-control" />
+            <label for="EndHour">Start Hour</label>
+            <input type="time" name="EndHour" value="<%= data.EndHour %>" placeholder="hh:mm" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="isActive">isActive:</label>
+            <label class="radio-inline">
+                <input type="radio" name="isActive" value="Yes" <% if(data.isActive == "Yes"){ %> checked <% } %> />Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="isActive" value="No" <% if(data.isActive == "No"){ %> checked <% } %> />No
+            </label>
+        </div>
+        <input type="submit" value="Update Event" class="btn btn-success" />
+        <a href="/forms/events" class="btn btn-success">Cancel</a>
+    </form>
+    </div>
+</div>

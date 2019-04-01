@@ -1,0 +1,43 @@
+<%- layout('layout') %>
+<div>
+    <h3><%- title %></h3>
+    <hr />
+
+    <form method="post" action="/forms/events" class="col-xs-6">
+        <% if (error != "") { %>
+            <div class="alert alert-danger" role="alert">
+                <% for (var i=0; i < error.length ; i++ ) { %>
+                    <%= error[i].msg %><br />
+                <% } %>
+            </div>
+        <% } %>
+        <div class="form-group">
+            <label>Activity</label>
+            <select name="Activity" class="form-control">
+                <% for (var i=0; i < activities.length ; i++) { %>
+                    <option value="<%- activities[i].Activity %>"><%- activities[i].Activity %></option>
+                <% } %>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="EventDate">Event Date</label>
+            <input type="date" name="EventDate" placeholder="yyyy-mm-dd" class="form-control" ng-model-options="{timezone:'UTC'}"/>
+            <label for="StartHour">Start Hour</label>
+            <input type="time" name="StartHour" placeholder="hh:mm" class="form-control" />
+            <label for="EndHour">End Hour</label>
+            <input type="time" name="EndHour" placeholder="hh:mm" class="form-control" />
+        </div>
+        <div class="form-group">
+                <label for="isActive">isActive:</label>
+                <label class="radio-inline">
+                    <input type="radio" name="isActive" value="Yes" checked />Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="isActive" value="No" />No
+                </label>
+            </div>
+        <input type="submit" value="Add Event" class="btn btn-success" />
+        <a href="/forms/events" class="btn btn-success">Cancel</a>
+    </form>
+</div>
